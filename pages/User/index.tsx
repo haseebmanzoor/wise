@@ -5,6 +5,8 @@ import { BsUmbrella } from "react-icons/bs";
 import { CiMoneyBill } from "react-icons/ci";
 import { motion } from "framer-motion";
 import PopUp from "@/Components/PopUp";
+import GenBtn from "@/Components/GenBtn";
+import NavBar from "@/Components/NavBar";
 
 type Props = {};
 const MENU_ITEM = [
@@ -52,20 +54,8 @@ const OPT = [
 		icon: () => <AiOutlineLineChart size={25} className="text-gray-900" />,
 	},
 	{
-		title: "Statements",
+		title: "Savings",
 		icon: () => <BsUmbrella size={25} className="text-gray-900" />,
-	},
-	{
-		title: "Transfer",
-		icon: () => <AiOutlineLineChart size={25} className="text-gray-900" />,
-	},
-	{
-		title: "Payments",
-		icon: () => <BsUmbrella size={25} className="text-gray-900" />,
-	},
-	{
-		title: "PIX",
-		icon: () => <AiOutlineLineChart size={25} className="text-gray-900" />,
 	},
 ];
 
@@ -108,114 +98,122 @@ const TRANS = [
 const User = (props: Props) => {
 	const [showPopup, setshowPopup] = useState(false);
 	return (
-		<motion.div
-			initial={{ opacity: 0 }}
-			whileInView={{ opacity: 1 }}
-			viewport={{ once: true }}
-			className="grid grid-cols-1 lg:grid-cols-12"
-		>
-			<div className="col-span-2 bg-white rounded-lg lg:flex flex-col h-screen items-center hidden">
-				<Image src={require("@/assets/logoBrand.png")} width={150} height={90} />
-				<Image
-					src={
-						"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDdQvcTSANSyEl8ICHpOjlFnBiLUZgafMuh5wZhUdA&s"
-					}
-					width={100}
-					height={100}
-					className="rounded-full"
-				/>
-				<h1 className="text-gray-400 font-bold p-2">Jenny Wilson</h1>
-				<h1 className="text-gray-400 text-xs p-0">Agency XYZ</h1>
-				<h1 className="text-gray-400 text-xs p-0">Jenny Wilson</h1>
-				<div className="pt-12 ">
-					{MENU_ITEM?.map((item: any) => (
-						<div
-							className="flex space-y-4 my-4 space-x-8 items-center 
-                        hover:scale-105 transition-all cursor-pointer"
-							onClick={() => setshowPopup(true)}
-						>
-							<div className="mt-2">{item.icon()}</div>
-							<h1 className="text-sm text-gray-400">{item.title}</h1>
+		<>
+			<NavBar />
+			<motion.div
+				initial={{ opacity: 0 }}
+				whileInView={{ opacity: 1 }}
+				viewport={{ once: true }}
+				className="grid grid-cols-1 lg:grid-cols-12 bg-[#EBF9FF] px-20 pt-16"
+			>
+				<div className="col-span-2 bg-[#EBF9FF] p-0 rounded-lg lg:flex flex-col items-center hidden">
+					{/* <Image src={require("@/assets/logoBrand.png")} width={150} height={90} /> */}
+					<div className="bg-[#00A2DD] flex flex-col w-full p-8  rounded-lg">
+						<div className="flex items-center justify-center">
+							<Image
+								src={require("@/assets/user.png")}
+								width={140}
+								height={140}
+								className="rounded-full"
+							/>
 						</div>
-					))}
-				</div>
-			</div>
-
-			<div className="col-span-10 bg-[#EBF9FF] flex flex-col h-screen">
-				<div className="flex space-x-3 mx-6 my-3">
-					<div className="flex flex-col p-3 bg-white rounded-lg shadow-xl w-[300px]">
-						<p className="text-xs font-bold">Checking Account Balance</p>
-						<h1 className="mt-5 text-xl text-cyan-600">R$ 1900,520</h1>
-						<p className="text-xs text-gray-400">available balance</p>
-						<div className="my-5 w-full border border-gray-400 border-dashed" />
-						<h1 className="mt-0 text-xl text-red-600">R$ -100,520</h1>
-						<p className="text-xs text-gray-400">future balance</p>
+						<h1 className="text-white text-center text-sm font-bold p-2">Jenny Wilson</h1>
+						<h1 className="text-white text-center text-xs p-0">Agency XYZ</h1>
+						<h1 className="text-white text-center text-xs p-0">Jenny Wilson</h1>
 					</div>
 
-					<div className="flex flex-col p-3 bg-white rounded-lg shadow-xl w-full">
-						<p className="text-xs font-bold">Credit Card Balance</p>
-						<div className="rounded-full flex w-60 h-4 bg-green-600 mt-4" />
-						<div className="my-5 w-full border border-gray-400 border-dashed" />
-						<div className="flex space-x-4 w-full">
-							<Image src={require("@/assets/Card.png")} width={300} height={150} />
+					<div className="mt-4 bg-white p-2 rounded-lg w-full">
+						{MENU_ITEM?.map((item: any) => (
 							<div
-								className="h-[150px] w-[300px] bg-gray-300 rounded-lg 
-                            flex items-center justify-center"
+								className="flex space-y-2 my-1 space-x-4 items-center 
+                        hover:scale-105 transition-all cursor-pointer p-2"
+								onClick={() => setshowPopup(true)}
 							>
-								<h1 className="text-sm text-gray-500">Add Card</h1>
+								<div className="mt-2">{item.icon()}</div>
+								<h1 className="text-sm text-gray-400">{item.title}</h1>
 							</div>
-						</div>
-					</div>
-				</div>
-
-				<div className="flex overflow-auto p-4">
-					{OPT?.map((item: any) => (
-						<div
-							className="flex flex-col mx-3  items-center 
-                        justify-center w-[150px] p-8 bg-white shadow-lg rounded-lg"
-						>
-							<div className="mt-2">{item.icon()}</div>
-							<h1 className="text-sm text-gray-900">{item.title}</h1>
-						</div>
-					))}
-				</div>
-
-				<div className="rounded-lg bg-white w-full m-5 overflow-scroll p-4">
-					<h1 className="text-gray-400">Transactions</h1>
-
-					<div className="m-5 flex flex-col">
-						{TRANS.map((item: any) => (
-							<>
-								<h1 className="text-lg text-gray-400">{item.date}</h1>
-								<div className="p-5 flex flex-col">
-									{item.data.map((subitem: any) => (
-										<div className="flex pb-10">
-											<div>
-												<h1 className="bg-gray-700 text-white p-2 text-xs rounded-full">
-													{subitem.day}
-												</h1>
-											</div>
-											<div>
-												<p className="ml-12 text-gray-400">{subitem.title}</p>
-												<p className=" ml-12 text-gray-400 text-xs mt-0">{subitem.subtitle}</p>
-											</div>
-											<h1
-												className={`${
-													subitem.isNegative ? "text-red-900" : "text-green-700"
-												} ml-96`}
-											>
-												{subitem.value}
-											</h1>
-										</div>
-									))}
-								</div>
-							</>
 						))}
 					</div>
 				</div>
-			</div>
-			<PopUp isVisible={showPopup} onClose={() => setshowPopup(false)} />
-		</motion.div>
+
+				<div className="col-span-10 bg-[#EBF9FF] flex flex-col h-screen">
+					<div className="flex space-x-3 mx-6 my-0">
+						<div className="flex flex-col p-8 bg-white rounded-lg shadow-xl w-[300px]">
+							<p className="text-xs font-bold text-blue-800">Checking Account Balance</p>
+							<h1 className="mt-5 text-xl text-cyan-600">$ 1900,520</h1>
+							<p className="text-xs text-gray-400">Available Balance</p>
+							<div className="my-5 w-full border border-gray-400 border-dashed" />
+						</div>
+
+						<div className="flex flex-col p-8 bg-white rounded-lg shadow-xl w-full">
+							<p className="text-xs font-bold">Credit Card Balance</p>
+							<div className="rounded-full flex w-96 h-4 bg-green-600 my-4" />
+							<div className="flex space-x-4 space-y-0 w-full">
+								<Image src={require("@/assets/Card.png")} width={300} height={10} />
+								<div className="ml-2 flex">
+									<Image src={require("@/assets/Card1.png")} width={300} height={50} />
+								</div>
+								<div
+									className="h-[150px] w-[300px] bg-gray-300 rounded-lg 
+                            flex items-center justify-center"
+								>
+									<h1 className="text-sm text-gray-500">Add Card</h1>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div className="flex m-4 w-full">
+						{OPT?.map((item: any) => (
+							<div
+								className="flex flex-col mx-2  items-center 
+                        justify-center w-[164px] h-[115px] p-3 bg-white shadow-lg rounded-lg"
+							>
+								<div className="mt-2">{item.icon()}</div>
+								<h1 className="text-xs text-gray-900">{item.title}</h1>
+							</div>
+						))}
+					</div>
+
+					<div className="rounded-lg bg-white mx-5 p-4">
+						<h1 className="text-gray-400">Transactions</h1>
+
+						<div className="flex flex-col">
+							{TRANS.map((item: any) => (
+								<>
+									<h1 className="text-lg text-gray-400">{item.date}</h1>
+									<div className="p-5 flex flex-col">
+										{item.data.map((subitem: any) => (
+											<div className="flex justify-between pb-10">
+												<div className="flex">
+													<div className="flex">
+														<h1 className="bg-gray-700 text-white p-2 m-2 text-xs rounded-full">
+															{subitem.day}
+														</h1>
+													</div>
+													<div className="mt-1">
+														<p className="ml-12 text-gray-400">{subitem.title}</p>
+														<p className=" ml-12 text-gray-400 text-xs mt-0">{subitem.subtitle}</p>
+													</div>
+												</div>
+												<div className="flex items-end">
+													<h1
+														className={`${subitem.isNegative ? "text-red-900" : "text-green-700"}`}
+													>
+														{subitem.value}
+													</h1>
+												</div>
+											</div>
+										))}
+									</div>
+								</>
+							))}
+						</div>
+					</div>
+				</div>
+				<PopUp isVisible={showPopup} onClose={() => setshowPopup(false)} />
+			</motion.div>
+		</>
 	);
 };
 
